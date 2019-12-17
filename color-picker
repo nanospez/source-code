@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" 
+  content="Color Picker Source Code" />
+  
+
+
+<!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   
+<!-- wcoplick css -->
+ <link href="https://learnfrom.online/acss/wcolpick.css" rel="stylesheet" type="text/css">
+ 
+<title>Color Picker</title>
+</head>
+<body>
+
+<br><br>
+
+<div class="container-fluid mx-auto">
+  <section>
+  <div class="jquery-script-clear"></div>
+  <div class="container">
+  <h2>Color Picker</h2>
+  <div id="example1"></div>
+  <div style="height: 240px; width: 240px;"></div>
+  </div>
+  </section>
+  </div>
+  
+  
+<!--- Color Picker tool -->
+ <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+ <script src="https://learnfrom.online/ajs/wcolpick.js"></script>
+ 
+ <script>
+ jQuery(function() {
+ $('#example1').loads({
+ enableAlpha: false,
+ layout: 'rgbhex',
+ colorScheme: 'light',
+ enableSubmit: false
+ });
+ $('#example2').loads({
+ layout: 'hex',
+ flat: false,
+ enableAlpha: false,
+ color: '208EB3',
+ onSubmit: function(ev) {
+ $(ev.el).css('border-color', '#' + ev.hex);
+ $(ev.el).val("#" + ev.hex);
+ $(ev.el).hides();
+ },
+ onHide: function(ev) {
+ var color = $(ev.el).getColor("hex", true);
+ $(ev.el).setColor(color, false);
+ }
+ });
+ $('#button1').loads({
+ flat: false,
+ enableAlpha: false,
+ layout: 'rgbhex',
+ compactLayout: true,
+ color: 'c9264a',
+ onLoaded: function(ev) {
+ var hex = $(ev.el).getColor("hex", true);
+ $(ev.el).css('background-color', '#' + hex);
+ },
+ onHide: function(ev) {
+ var hex = $(ev.el).getColor("hex", true);
+ $(ev.el).css('background-color', '#' + hex);
+ $(ev.el).setColor(hex, false);
+ },
+ onChange: function(ev) {
+ $(ev.el).css('background-color', '#' + ev.hex);
+ },
+ onSubmit: function(ev) {
+ $(ev.el).hides();
+ }
+ });
+ });
+ </script>
+ 
+
+
+</body>
+</html>
